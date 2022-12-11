@@ -1,10 +1,10 @@
 CC		= c++
 
-NAME	= Fixed
+NAME	= Useful_Fixed
 
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 #-g3 -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 # -fsanitize=address
 
-SRC		= Fixed.cpp main.cpp
+SRC		= Fixed.cpp  Point.cpp main.cpp bsp.cpp
 
 all: $(NAME)
 
