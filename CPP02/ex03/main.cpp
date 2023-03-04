@@ -1,17 +1,56 @@
 #include "Point.hpp"
 
-int main( void )
+int main(void)
 {
-   Point A(Fixed(10), Fixed(30));
-   Point B(Fixed(0), Fixed(0));
-   Point C(Fixed(20), Fixed(0));
-   Point P(Fixed(10), Fixed(15));
+	Fixed		a(20);
+	Fixed const	b( Fixed(52313131313131.05f) * Fixed( 2 ) );
+	Fixed		c(0.5f);
 
-   std::cout << "--------------------" << std::endl;
-   if (bsp(A, B, C, P))
-      std::cout << "bsp return 1" << std::endl;
-   else
-      std::cout << "bsp return 0" << std::endl;
+	std::cout << "---------------- FIXED POINTS ----------------" << std::endl; 
+	std::cout << "a = " << a << std::endl << "b = " << b << std::endl << "c = " << c << std::endl << std::endl;
+	
+	std::cout << "------------ COMPARISON OPERATORS ------------" << std::endl; 
+	if (a < c)
+		std::cout << "a is smaller than c" << std::endl;
+	if (a <= c)
+		std::cout << "a is smaller or equal to c" << std::endl;
+	if (a > c)
+		std::cout << "a is bigger than c" << std::endl;
+	if (a >= c)
+		std::cout << "a is bigger or equal to c" << std::endl;
+	if (a == c)
+		std::cout << "a is equal to c" << std::endl;
+	if (a != c)
+		std::cout << "a is not equal to c" << std::endl;
+	
+	std::cout << std::endl << "------------ ARITHMETIC OPERATORS ------------" << std::endl; 
+	std::cout << "a + b = " << a + b << std::endl;
+	std::cout << "a - b = " << a - b << std::endl;
+	std::cout << "a * b = " << a * b << std::endl;
+	std::cout << "a / c = " << a / c << std::endl;
+	std::cout << "a + b + c = " << a + b +c << std::endl;
+	
+	std::cout << std::endl << "-------- INCREMENT / DECREMENT OPERATORS --------" << std::endl; 
+	std::cout << "a ----> " << a << std::endl;	
+	std::cout << "++a --> " << ++a << std::endl;
+	std::cout << "--a --> " << --a << std::endl;
+	std::cout << "a ----> " << a << std::endl;	
+	std::cout << "a++ --> " << a++ << std::endl;
+	std::cout << "a-- --> " << a-- << std::endl;
+	std::cout << "a ----> " << a << std::endl << std::endl;	
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+//   Point A(Fixed(10), Fixed(30));
+//   Point B(Fixed(0), Fixed(0));
+//   Point C(Fixed(20), Fixed(0));
+//   Point P(Fixed(10), Fixed(15));
+//
+//   std::cout << "--------------------" << std::endl;
+//   if (bsp(A, B, C, P))
+//      std::cout << "bsp return 1" << std::endl;
+//   else
+//      std::cout << "bsp return 0" << std::endl;
 }
 
 /*  Fixed a;

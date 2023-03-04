@@ -1,10 +1,10 @@
 CC		= c++
 
-NAME	= ScavTrap
+NAME	= ClapTrap
 
 CFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 # -fsanitize=address
 
-SRC		= ScavTrap.cpp ClapTrap.cpp main.cpp
+SRC		= ClapTrap.cpp main.cpp
 
 all: $(NAME)
 
