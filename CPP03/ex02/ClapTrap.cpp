@@ -30,9 +30,9 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::attack(const std::string& target)
 {
     if (_hit_pts <= 0 || _energy_pts <= 0)
-        return;
-    std::cout << "ScavTrap " << _name << " attacks " << target
-               << " causing " << _atk_pts << " points of damage!" << std::endl;
+        return ;
+    std::cout << "Trap " << _name << " attacks " << target
+                << " causing " << _atk_pts << " points of damage!" << std::endl;
     this->setEnergy(_energy_pts - 1);
 }
 

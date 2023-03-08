@@ -52,7 +52,7 @@ int   Fixed::toInt( void ) const
 Fixed& Fixed::operator=( const Fixed& B)
 {
     this->_nb = B._nb;
-    return *this;    
+    return *this;
 }
 
 Fixed Fixed::operator+( const Fixed& B) const

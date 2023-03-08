@@ -19,6 +19,7 @@ class ClapTrap
 		void setHealth(unsigned int health);
 		void setEnergy(unsigned int energy);
 		void setAttack(unsigned int attack);
+		std::string getName();
 		int  getHealth();
 		int  getEnergy();
 		int  getAttack();
