@@ -11,8 +11,14 @@ class ClapTrap
 		int			_hit_pts;
 		int			_energy_pts;
 		int			_atk_pts;
+
 	public:
 		int max_hp;
+		ClapTrap();
+	    ClapTrap& operator=( const ClapTrap& );
+		ClapTrap( const ClapTrap &);
+		ClapTrap(std::string name);
+		~ClapTrap();
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
@@ -22,9 +28,6 @@ class ClapTrap
 		int  getHealth();
 		int  getEnergy();
 		int  getAttack();
-		ClapTrap(std::string name);
-		~ClapTrap();
-		ClapTrap();
 };
 
-#endif
+#endif	

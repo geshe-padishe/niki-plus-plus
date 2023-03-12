@@ -8,7 +8,7 @@ SRC		= ClapTrap.cpp main.cpp
 
 all: $(NAME)
 
-$(NAME): ${SRC}
+$(NAME): ${SRC} ClapTrap.hpp
 	${CC} ${CFLAGS} ${SRC} -o ${NAME}
 
 clean:

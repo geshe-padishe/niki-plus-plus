@@ -1,5 +1,13 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(): _name("DefaultTrap"), _hit_pts(10), _energy_pts(10), _atk_pts(0) {}
+
+ClapTrap::ClapTrap( const ClapTrap & trap)
+{
+    std::cout << "Fixed Copy constructor called" << std::endl;
+    *this = trap;
+}
+
 ClapTrap::ClapTrap(std::string name): _name(name), _hit_pts(10), _energy_pts(10), _atk_pts(0)
 {
     std::cout << "ClapTrap created with name:" << name << std::endl;
@@ -8,6 +16,15 @@ ClapTrap::ClapTrap(std::string name): _name(name), _hit_pts(10), _energy_pts(10)
 ClapTrap::~ClapTrap()
 {
     std::cout << "ClapTrap " << _name << " destroyed" << std::endl;
+}
+
+ClapTrap& ClapTrap::operator=( const ClapTrap& B)
+{
+    _name = B._name;
+    _hit_pts = B._hit_pts;
+    _energy_pts = B._energy_pts;
+    _atk_pts = B._atk_pts;
+    return *this;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

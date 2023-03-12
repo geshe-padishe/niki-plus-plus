@@ -13,6 +13,9 @@ class ClapTrap
 		int			_atk_pts;
 
 	public:
+		ClapTrap();
+	    ClapTrap& operator=( const ClapTrap& );
+		ClapTrap( const ClapTrap &);
 		ClapTrap(std::string name);
 		~ClapTrap();
 		void attack(const std::string& target);
@@ -26,4 +29,4 @@ class ClapTrap
 		int  getAttack();
 };
 
-#endif
+#endif	
