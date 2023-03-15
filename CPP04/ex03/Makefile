@@ -2,9 +2,9 @@ CC		= c++
 
 NAME	= Animal
 
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 -g3 # -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -I -std=c++98 -g3 # -fsanitize=address
 
-SRC		= Animal.cpp Dog.cpp Cat.cpp Brain.cpp main.cpp
+SRC		= main.cpp AMateria.cpp Character.cpp MateriaSource.cpp Ice.cpp Cure.cpp
 
 all: $(NAME)
 

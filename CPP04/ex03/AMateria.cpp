@@ -1,20 +1,18 @@
-#include "Dog.hpp"
+#include "AMateria.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
-
-Dog::Dog() : Animal("Dog")
+AMateria::AMateria(std::string const & type)
 {
-	_brain = new Brain();
-	std::cout << "Dog Constructor Called" << std::endl;
+	this->_type = type;
 }
 
-Dog::Dog( const Dog & src )
+AMateria::AMateria() : _type("Nothing") {}
+
+AMateria::AMateria( const AMateria & src )
 {
-	type = src.type;
-	_brain = new Brain(*src._brain);
-	std::cout << "Dog Copy Constructor Called" << std::endl;
+	this->_type = src._type;
 }
 
 
@@ -22,10 +20,8 @@ Dog::Dog( const Dog & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Dog::~Dog()
+AMateria::~AMateria()
 {
-	std::cout << "Dog Destructor Called" << std::endl;
-	delete _brain;
 }
 
 
@@ -33,12 +29,11 @@ Dog::~Dog()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & rhs )
+AMateria &				AMateria::operator=( AMateria const & rhs )
 {
 	if ( this != &rhs )
 	{
-		type = rhs.type;
-		_brain = new Brain(*rhs._brain);
+		_type = rhs._type;
 	}
 	return *this;
 }
@@ -47,14 +42,19 @@ Dog &				Dog::operator=( Dog const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void Dog::makeSound() const
+void AMateria::use(ICharacter& target)
 {
-	std::cout << "WAF WAF" << std::endl;
+	(void)target;
+	std::cout << "AMateria use" << std::endl;
 }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
+std::string const & AMateria::getType() const
+{
+	return _type;
+}
 
 /* ************************************************************************** */

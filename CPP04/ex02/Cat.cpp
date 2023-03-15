@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Cat::Cat() : AAnimal("Cat")
+Cat::Cat() : Animal("Cat")
 {
 	_brain = new Brain();
 	std::cout << "Cat Constructor Called" << std::endl;
@@ -12,8 +12,8 @@ Cat::Cat() : AAnimal("Cat")
 
 Cat::Cat( const Cat & src )
 {
-	_brain = src._brain;
 	type = src.type;
+	_brain = new Brain(*src._brain);
 	std::cout << "Cat Copy Constructor Called" << std::endl;
 }
 
@@ -24,8 +24,8 @@ Cat::Cat( const Cat & src )
 
 Cat::~Cat()
 {
-	delete _brain;
 	std::cout << "Cat Destructor Called" << std::endl;
+	delete _brain;
 }
 
 
@@ -35,12 +35,11 @@ Cat::~Cat()
 
 Cat &				Cat::operator=( Cat const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
-	type = rhs.type;
-	_brain = rhs._brain;
+	if ( this != &rhs )
+	{
+		type = rhs.type;
+		_brain = new Brain(*rhs._brain);
+	}
 	return *this;
 }
 

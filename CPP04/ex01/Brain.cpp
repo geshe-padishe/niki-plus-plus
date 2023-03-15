@@ -6,13 +6,14 @@
 
 Brain::Brain()
 {
-	ideas = NULL;
+	for (int i = 0; i < 100; i++)
+		ideas[i] = "Empty Idea";
 	std::cout << "Brain Constructor Called" << std::endl;
 }
 
 Brain::Brain( const Brain & src )
 {
-	ideas = src.ideas;
+	*this = src;
 	std::cout << "Brain Copy Constructor called" << std::endl;
 }
 
@@ -31,7 +32,8 @@ Brain::~Brain()
 
 Brain &				Brain::operator=( Brain const & rhs )
 {
-	ideas = rhs.ideas;
+	for (int i = 0; i < 100; i++)
+		ideas[i] = rhs.ideas[i];
 	return *this;
 }
 

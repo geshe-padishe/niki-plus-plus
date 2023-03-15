@@ -1,25 +1,25 @@
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-AAnimal::AAnimal()
+Animal::Animal()
 {
-	type = "DefaultAAnimal";
-	std::cout << "AAnimal Constructor Called" << std::endl;
+	type = "DefaultAnimal";
+	std::cout << "Animal Constructor Called" << std::endl;
 }
 
-AAnimal::AAnimal(std::string type)
+Animal::Animal(std::string type)
 {
 	this->type = type;
-	std::cout << "AAnimal Parameter Constructor Called" << std::endl;
+	std::cout << "Animal Parameter Constructor Called" << std::endl;
 }
 
-AAnimal::AAnimal( const AAnimal & src )
+Animal::Animal( const Animal & src )
 {
 	type = src.type;
-	std::cout << "AAnimal Copy Constructor Called" << std::endl;
+	std::cout << "Animal Copy Constructor Called" << std::endl;
 }
 
 
@@ -27,9 +27,9 @@ AAnimal::AAnimal( const AAnimal & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-AAnimal::~AAnimal()
+Animal::~Animal()
 {
-	std::cout << "AAnimal Destructor Called" << std::endl;
+	std::cout << "Animal Destructor Called" << std::endl;
 }
 
 
@@ -37,7 +37,7 @@ AAnimal::~AAnimal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-AAnimal &				AAnimal::operator=( AAnimal const & rhs )
+Animal &				Animal::operator=( Animal const & rhs )
 {
 	type = rhs.type;
 	return *this;
@@ -47,11 +47,16 @@ AAnimal &				AAnimal::operator=( AAnimal const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void Animal::makeSound() const
+{
+	std::cout << "ANIMAL ROAR!!" << std::endl;
+}
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
 
-std::string AAnimal::getType() const
+std::string Animal::getType() const
 {
 	return type;
 }

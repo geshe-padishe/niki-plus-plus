@@ -1,20 +1,14 @@
-#include "Dog.hpp"
+#include "Cure.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog() : Animal("Dog")
-{
-	_brain = new Brain();
-	std::cout << "Dog Constructor Called" << std::endl;
-}
+Cure::Cure() : AMateria("cure") {}
 
-Dog::Dog( const Dog & src )
+Cure::Cure( const Cure & src )
 {
-	type = src.type;
-	_brain = new Brain(*src._brain);
-	std::cout << "Dog Copy Constructor Called" << std::endl;
+	*this = src;
 }
 
 
@@ -22,24 +16,16 @@ Dog::Dog( const Dog & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Dog::~Dog()
-{
-	std::cout << "Dog Destructor Called" << std::endl;
-	delete _brain;
-}
-
+Cure::~Cure() {}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & rhs )
+Cure &				Cure::operator=( Cure const & rhs )
 {
 	if ( this != &rhs )
-	{
-		type = rhs.type;
-		_brain = new Brain(*rhs._brain);
-	}
+		_type = rhs._type;
 	return *this;
 }
 
@@ -47,9 +33,15 @@ Dog &				Dog::operator=( Dog const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void Dog::makeSound() const
+AMateria* Cure::clone() const
 {
-	std::cout << "WAF WAF" << std::endl;
+	Cure *new_cure = new Cure(*this);
+	return (new_cure);
+}
+
+void Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << " wounds *" << std::endl;
 }
 
 /*

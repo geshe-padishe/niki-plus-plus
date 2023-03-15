@@ -1,20 +1,14 @@
-#include "Dog.hpp"
+#include "Ice.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Dog::Dog() : Animal("Dog")
-{
-	_brain = new Brain();
-	std::cout << "Dog Constructor Called" << std::endl;
-}
+Ice::Ice() : AMateria("ice") {}
 
-Dog::Dog( const Dog & src )
+Ice::Ice( const Ice & src )
 {
-	type = src.type;
-	_brain = new Brain(*src._brain);
-	std::cout << "Dog Copy Constructor Called" << std::endl;
+	*this = src;
 }
 
 
@@ -22,24 +16,16 @@ Dog::Dog( const Dog & src )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Dog::~Dog()
-{
-	std::cout << "Dog Destructor Called" << std::endl;
-	delete _brain;
-}
-
+Ice::~Ice() {}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Dog &				Dog::operator=( Dog const & rhs )
+Ice &				Ice::operator=( Ice const & rhs )
 {
 	if ( this != &rhs )
-	{
-		type = rhs.type;
-		_brain = new Brain(*rhs._brain);
-	}
+		this->_type = rhs._type;
 	return *this;
 }
 
@@ -47,9 +33,15 @@ Dog &				Dog::operator=( Dog const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void Dog::makeSound() const
+AMateria* Ice::clone() const
 {
-	std::cout << "WAF WAF" << std::endl;
+	Ice *new_ice = new Ice(*this);
+	return (new_ice);
+}
+
+void Ice::use(ICharacter& target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
 /*
