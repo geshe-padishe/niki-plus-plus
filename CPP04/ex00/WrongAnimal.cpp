@@ -49,7 +49,7 @@ WrongAnimal &				WrongAnimal::operator=( WrongAnimal const & rhs )
 
 void WrongAnimal::makeSound() const
 {
-	std::cout << "ANIMAL ROAR!!" << std::endl;
+	std::cout << "WRONG ANIMAL" << std::endl;
 }
 
 /*
