@@ -2,23 +2,27 @@
 
 int main()
 {
-    Bureaucrat test("TEST", 140);
-    try 
-    { Bureaucrat niki("NIKI", 151); }
-    catch (std::exception& me)
-    { std::cout << "Caught an Exeption" << std::endl; 
-      std::cout << me.what() << std::endl; }
+  Bureaucrat  test("TEST", 1);
+  Bureaucrat  test2("TEST2", 150);
+  Form        form();
+  Form        form3("Form3", 10, 20);
+  try
+  {
+    Form      form1("Form1", 200, 200);
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+  try
+  {
+    Form      form2("Form2", 0, 0);
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+  
 
-    try 
-    { Bureaucrat niki("NIKI", 0); }
-    catch (std::exception& me)
-    { std::cout << "Caught an Exeption" << std::endl; 
-      std::cout << me.what() << std::endl; }
-
-    try 
-    { Bureaucrat niki("NIKI", 12); }
-    catch (std::exception& me)
-    { std::cout << "Caught an Exeption" << std::endl; 
-      std::cout << me.what() << std::endl; }
-    std::cout << test;
+  test2.signForm(form3);
 }

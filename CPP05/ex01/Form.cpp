@@ -4,58 +4,52 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Form::Form() : name("DefaultForm"), is_signed(0), exec_req(150), sign_req(150) {}
+Form::Form(): name("Default Form"), is_signed(0), sign_grade(150), exec_grade(150) {}
 
-Form::Form( const Form & src ) {}
+Form::Form( const Form & src ): name(src.name), is_signed(src.is_signed)
+, sign_grade(src.sign_grade), exec_grade(src.exec_grade) {}
 
-
+Form::Form( char *name, int	sign_grade, int	exec_grade )
+: name(name), is_signed(is_signed), sign_grade(sign_grade), exec_grade(exec_grade)
+{
+	if (sign_grade < 1 || exec_grade < 1)
+		throw GradeTooHighException();
+	if (sign_grade > 150 || exec_grade > 150)
+		throw GradeTooLowException();
+}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Form::~Form()
-{
-}
+Form::~Form() {}
 
-std::string Form::getName() const
-{
-	return name;
-}
-bool		Form::getis_signed() const
-{
-	return is_signed;
-}
-unsigned int Form::getSignReq() const
-{
-	return sign_req;
-}
-unsigned int Form::getExecReq() const
-{
-	return exec_req;
-}
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
 Form &				Form::operator=( Form const & rhs )
 {
-	if ( this != &rhs )
-	{
-		(std::string)this->name = rhs.name;
-		(unsigned int)this->exec_req = rhs.exec_req;
-		(unsigned int)this->sign_req = rhs.sign_req;
-		this->is_signed = rhs.is_signed;
-	}
+	//if ( this != &rhs )
+	//{
+		//this->_value = rhs.getValue();
+	//}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
-	o << i.getName();
-	o << i.getExecReq();
-	o << i.getSignReq();
-	o << i.getis_signed();
-	//o << "Value = " << i.getValue();
+	if (i.get_is_signed())
+	{
+		o << "Form " << i.get_name() << "is signed,"
+		<< " requires " << i.get_sign_grade() << " to be signed and "
+		<< i.get_exec_grade() << " to be executed" << std::endl;
+	}
+	else
+	{
+		o << "Form " << i.get_name() << "is not signed,"
+		<< " requires " << i.get_sign_grade() << " to be signed and "
+		<< i.get_exec_grade() << " to be executed" << std::endl;
+	}
 	return o;
 }
 
@@ -64,6 +58,30 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+const char* Form::get_name() const
+{
+	return (name);
+}
+bool Form::get_is_signed() const
+{
+	return (is_signed);
+}
+const int Form::get_sign_grade() const
+{
+	return (sign_grade);
+}
+const int Form::get_exec_grade() const
+{
+	return (exec_grade);
+}
+void	Form::be_signed(const Bureaucrat &b)
+{
+	if (b.getGrade() > sign_grade)
+		throw GradeTooLowException();
+	else
+		return;
+	/*finit*/
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
