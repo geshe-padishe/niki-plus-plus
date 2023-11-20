@@ -21,9 +21,12 @@ int main()
     //  std::cout << me.what() << std::endl; }
     //std::cout << test;
     
+    std::cout << test;
+    std::cout << test2;
+
     try
     {
-      for(unsigned int i = 150; i < 200; i++)
+      for(unsigned int i = 0; i < 200; i++)
       {
         test.decreaseGrade();
       }

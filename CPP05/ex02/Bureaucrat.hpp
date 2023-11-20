@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
-#include "Form.hpp"
+#include "Aform.hpp"
 
 class Bureaucrat
 {
@@ -17,7 +17,7 @@ class Bureaucrat
 		unsigned int getGrade() const;
 		void increaseGrade();
 		void decreaseGrade();
-		bool signForm( Form &f );
+		bool signAform( Aform &f );
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 		class GradeTooHighException: public std::exception
 		{

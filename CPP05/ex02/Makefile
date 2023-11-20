@@ -1,12 +1,12 @@
 CC		= c++
 
-NAME	= Form
+NAME	= Aform
 
 CFLAGS	= -Wall -Wextra -Werror -g3 -std=c++98 # -g3  -fsanitize=address
 
-SRC		= Bureaucrat.cpp main.cpp Form.cpp
+SRC		= Bureaucrat.cpp main.cpp Aform.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm
 
-INC		= Bureaucrat.hpp Form.hpp
+INC		= Bureaucrat.hpp Aform.hpp
 
 OBJS	= ${SRC:.cpp=.o}
 

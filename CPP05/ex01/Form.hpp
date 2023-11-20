@@ -5,19 +5,20 @@
 # include <string>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form
 {
-
 	public:
 		Form();
 		Form( Form const & src );
-		Form(char *name, int sign_grade, int exec_grade);
+		Form(std::string name, int sign_grade, int exec_grade);
 		~Form();
-		const char* get_name() const;
+		std::string get_name() const;
 		bool		get_is_signed() const;
 		const int	get_exec_grade() const;
 		const int	get_sign_grade() const;
-		void		be_signed(const Bureaucrat &b);
+		void		be_signed(Bureaucrat &bc);
 		Form &		operator=( Form const & rhs );
 		class GradeTooHighException: public std::exception
 		{
@@ -31,10 +32,10 @@ class Form
 		};
 
 	private:
-		const char *name;
-		bool		is_signed;
-		const int	sign_grade;
-		const int	exec_grade;
+		const std::string	name;
+		bool				is_signed;
+		const int			sign_grade;
+		const int			exec_grade;
 };
 
 std::ostream &			operator<<( std::ostream & o, Form const & i );

@@ -71,7 +71,7 @@ unsigned int Bureaucrat::getGrade() const
 	return (this->grade);
 }
 
-bool Bureaucrat::signForm( Form &f )
+bool Bureaucrat::signAform( Aform &f )
 {
 	try
 	{

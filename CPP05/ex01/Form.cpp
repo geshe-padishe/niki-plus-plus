@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
@@ -9,8 +9,8 @@ Form::Form(): name("Default Form"), is_signed(0), sign_grade(150), exec_grade(15
 Form::Form( const Form & src ): name(src.name), is_signed(src.is_signed)
 , sign_grade(src.sign_grade), exec_grade(src.exec_grade) {}
 
-Form::Form( char *name, int	sign_grade, int	exec_grade )
-: name(name), is_signed(is_signed), sign_grade(sign_grade), exec_grade(exec_grade)
+Form::Form( std::string name, int	sign_grade, int	exec_grade )
+: name(name), is_signed(0), sign_grade(sign_grade), exec_grade(exec_grade)
 {
 	if (sign_grade < 1 || exec_grade < 1)
 		throw GradeTooHighException();
@@ -40,25 +40,33 @@ std::ostream &			operator<<( std::ostream & o, Form const & i )
 {
 	if (i.get_is_signed())
 	{
-		o << "Form " << i.get_name() << "is signed,"
+		o << "Form " << i.get_name() << " is signed,"
 		<< " requires " << i.get_sign_grade() << " to be signed and "
 		<< i.get_exec_grade() << " to be executed" << std::endl;
 	}
 	else
 	{
-		o << "Form " << i.get_name() << "is not signed,"
+		o << "Form " << i.get_name() << " is not signed,"
 		<< " requires " << i.get_sign_grade() << " to be signed and "
 		<< i.get_exec_grade() << " to be executed" << std::endl;
 	}
 	return o;
 }
 
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Grade too high");
+}
 
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low");
+}
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 
-const char* Form::get_name() const
+std::string Form::get_name() const
 {
 	return (name);
 }
@@ -74,12 +82,12 @@ const int Form::get_exec_grade() const
 {
 	return (exec_grade);
 }
-void	Form::be_signed(const Bureaucrat &b)
+void	Form::be_signed(Bureaucrat &b)
 {
 	if (b.getGrade() > sign_grade)
 		throw GradeTooLowException();
 	else
-		return;
+		this->is_signed	= 1;
 	/*finit*/
 }
 

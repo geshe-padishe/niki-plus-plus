@@ -4,12 +4,12 @@ int main()
 {
   Bureaucrat  test("TEST", 1);
   Bureaucrat  test2("TEST2", 150);
-  Form        form;
-  Form        form3("Form3", 10, 20);
-  Form        form4("Form4", 10, 20);
+  Aform        form;
+  Aform        form3("Form3", 10, 20);
+  Aform        form4("Form4", 10, 20);
   try
   {
-  Form        form5("Form5", 1000, 20);
+  Aform        form5("Form5", 1000, 20);
     /* code */
   }
   catch(const std::exception& e)
@@ -18,7 +18,7 @@ int main()
   }
   try
   {
-    Form      form2("Form2", 0, 20);
+    Aform      form2("Form2", 0, 20);
   }
   catch(const std::exception& e)
   {
