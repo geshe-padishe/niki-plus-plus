@@ -9,11 +9,10 @@ class PresidentialPardonForm: public Aform
 {
 
 	public:
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const;
 		PresidentialPardonForm();
 		PresidentialPardonForm( PresidentialPardonForm const & src );
 		~PresidentialPardonForm();
-
 		PresidentialPardonForm &		operator=( PresidentialPardonForm const & rhs );
 
 	private:

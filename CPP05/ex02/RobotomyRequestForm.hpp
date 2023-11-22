@@ -9,11 +9,11 @@ class RobotomyRequestForm: public Aform
 {
 
 	public:
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const;
 		RobotomyRequestForm();
 		RobotomyRequestForm( RobotomyRequestForm const & src );
+		RobotomyRequestForm( std::string name, int	sign_grade, int	exec_grade );
 		~RobotomyRequestForm();
-
 		RobotomyRequestForm &		operator=( RobotomyRequestForm const & rhs );
 
 	private:

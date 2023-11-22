@@ -30,10 +30,11 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->name = rhs.getName();
+		this->grade = rhs.getGrade();
+	}
 	return *this;
 }
 
@@ -66,12 +67,12 @@ std::string Bureaucrat::getName() const
 	return (this->name);
 }
 
-unsigned int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return (this->grade);
 }
 
-bool Bureaucrat::signAform( Aform &f )
+bool Bureaucrat::signform( Aform &f )
 {
 	try
 	{

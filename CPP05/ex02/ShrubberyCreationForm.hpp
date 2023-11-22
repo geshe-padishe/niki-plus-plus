@@ -9,11 +9,10 @@ class ShrubberyCreationForm: public Aform
 {
 
 	public:
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const;
 		ShrubberyCreationForm();
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
 		~ShrubberyCreationForm();
-
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 
 	private:

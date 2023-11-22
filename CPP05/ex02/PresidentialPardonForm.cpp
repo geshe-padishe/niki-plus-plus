@@ -4,21 +4,9 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PresidentialPardonForm::PresidentialPardonForm()
-{
-	(*this).set_exec_grade(5);
-	(*this).set_sign_grade(25);
-	(*this).set_name("PresidentialPardon form");
-	(*this).set_signed(0);
-}
+PresidentialPardonForm::PresidentialPardonForm() : Aform ("PresidentialPardon form", 25, 5) {}
 
-PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src )
-{
-	(*this).set_exec_grade(src.get_exec_grade());
-	(*this).set_sign_grade(src.get_sign_grade());
-	(*this).set_name(src.get_name());
-	(*this).set_signed(src.get_is_signed());
-}
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : Aform(src) {}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -26,23 +14,20 @@ PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & s
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+		std::cout << "presidential = operator" << std::endl;
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << static_cast<const Aform &>(i);
 	return o;
 }
 
@@ -51,6 +36,11 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+{
+	std::cout << "Presidential exec" << std::endl;
+	std::cout << executor;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

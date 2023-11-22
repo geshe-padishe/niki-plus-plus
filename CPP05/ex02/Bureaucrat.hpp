@@ -5,6 +5,11 @@
 #include <string>
 #include <iostream>
 #include "Aform.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
+class Aform;
 
 class Bureaucrat
 {
@@ -14,10 +19,10 @@ class Bureaucrat
 		Bureaucrat( std::string, unsigned int );
 		~Bureaucrat();
 		std::string getName() const;
-		unsigned int getGrade() const;
+		int getGrade() const;
 		void increaseGrade();
 		void decreaseGrade();
-		bool signAform( Aform &f );
+		bool signform( Aform &f );
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 		class GradeTooHighException: public std::exception
 		{
@@ -32,7 +37,7 @@ class Bureaucrat
 
 	private:
 		std::string name;
-		unsigned int grade;
+		int grade;
 
 };
 

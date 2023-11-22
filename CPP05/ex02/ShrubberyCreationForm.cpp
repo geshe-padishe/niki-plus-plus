@@ -4,20 +4,15 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ShrubberyCreationForm::ShrubberyCreationForm(): name("ShurbberyCreation form"), 
-is_signed(0), sign_grade(145), exec_grade(137) {}
+ShrubberyCreationForm::ShrubberyCreationForm() : Aform ("ShrubberyCreation form", 145, 137) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ):
-name(src.name), is_signed(src.is_sigend), sign_grade(src.sign_grade), exec_grade(src.exec_grade) {}
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) : Aform(src) {}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-ShrubberyCreationForm::~ShrubberyCreationForm()
-{
-}
-
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
@@ -25,16 +20,14 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+		std::cout << "shrubbery = operator" << std::endl;
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << static_cast<const Aform &>(i);
 	return o;
 }
 
@@ -43,6 +36,11 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+{
+	std::cout << "Shrubbery exec" << std::endl;
+	std::cout << executor;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

@@ -1,34 +1,18 @@
 #include "RobotomyRequestForm.hpp"
-#include "Bureaucrat.hpp"
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::RobotomyRequestForm()
-{
-	(*this).set_exec_grade(45);
-	(*this).set_sign_grade(72);
-	(*this).set_name("RebotomyRequest form");
-	(*this).set_signed(0);
-}
+RobotomyRequestForm::RobotomyRequestForm() : Aform ("RobotomyRequest form", 72, 45) {}
 
-RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src )
-{
-	(*this).set_exec_grade(src.get_exec_grade());
-	(*this).set_sign_grade(src.get_sign_grade());
-	(*this).set_name(src.get_name());
-	(*this).set_signed(src.get_is_signed());
-}
+RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ) : Aform(src) {}
 
-
+RobotomyRequestForm::RobotomyRequestForm( std::string name, int	sign_grade, int	exec_grade ): Aform::Aform( name, sign_grade, exec_grade ) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::~RobotomyRequestForm()
-{
-}
-
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
@@ -36,16 +20,14 @@ RobotomyRequestForm::~RobotomyRequestForm()
 
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if (this != &rhs)
+		std::cout << "rebotomy = operator" << std::endl;
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << static_cast<const Aform &>(i);
 	return o;
 }
 
@@ -54,6 +36,11 @@ std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
+{
+	std::cout << "Robotomy exec" << std::endl;
+	std::cout << executor;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
