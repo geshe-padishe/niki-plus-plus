@@ -5,9 +5,8 @@
 */
 
 PresidentialPardonForm::PresidentialPardonForm() : Aform ("PresidentialPardon form", 25, 5) {}
-
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : Aform(src) {}
-
+PresidentialPardonForm::PresidentialPardonForm( std::string name ) : Aform(name, 25, 5) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
@@ -21,10 +20,12 @@ PresidentialPardonForm::~PresidentialPardonForm() {}
 PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardonForm const & rhs )
 {
 	if (this != &rhs)
-		std::cout << "presidential = operator" << std::endl;
+	{
+		this->~PresidentialPardonForm();
+		new (this) PresidentialPardonForm(rhs);
+	}
 	return *this;
 }
-
 std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i )
 {
 	o << static_cast<const Aform &>(i);
@@ -38,7 +39,7 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	std::cout << "Presidential exec" << std::endl;
+	std::cout << "Presidential exec to " << this->get_target_name() << std::endl;
 	std::cout << executor;
 }
 

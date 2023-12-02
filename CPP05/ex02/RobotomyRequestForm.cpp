@@ -4,10 +4,9 @@
 */
 
 RobotomyRequestForm::RobotomyRequestForm() : Aform ("RobotomyRequest form", 72, 45) {}
-
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ) : Aform(src) {}
+RobotomyRequestForm::RobotomyRequestForm( std::string name ) : Aform(name, 25, 5) {}
 
-RobotomyRequestForm::RobotomyRequestForm( std::string name, int	sign_grade, int	exec_grade ): Aform::Aform( name, sign_grade, exec_grade ) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
@@ -21,7 +20,10 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm const & rhs )
 {
 	if (this != &rhs)
-		std::cout << "rebotomy = operator" << std::endl;
+	{
+		this->~RobotomyRequestForm();
+		new (this) RobotomyRequestForm(rhs);
+	}
 	return *this;
 }
 

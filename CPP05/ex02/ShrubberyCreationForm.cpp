@@ -5,8 +5,8 @@
 */
 
 ShrubberyCreationForm::ShrubberyCreationForm() : Aform ("ShrubberyCreation form", 145, 137) {}
-
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) : Aform(src) {}
+ShrubberyCreationForm::ShrubberyCreationForm( std::string name ) : Aform(name, 25, 5) {}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -21,7 +21,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {}
 ShrubberyCreationForm &				ShrubberyCreationForm::operator=( ShrubberyCreationForm const & rhs )
 {
 	if (this != &rhs)
-		std::cout << "shrubbery = operator" << std::endl;
+	{
+		this->~ShrubberyCreationForm();
+		new (this) ShrubberyCreationForm(rhs);
+	}
 	return *this;
 }
 

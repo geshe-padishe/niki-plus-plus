@@ -1,22 +1,31 @@
 #include "Bureaucrat.hpp"
+#include <random>
 
 int main()
 {
   Bureaucrat  test("TEST", 1);
   Bureaucrat  test2("TEST2", 150);
-  RobotomyRequestForm        form("FORM ROBO", 120, 120);
   RobotomyRequestForm        formr;
-  PresidentialPardonForm        form3;
-  PresidentialPardonForm        form6(form3);
+  PresidentialPardonForm        form3("NIKI FORM");
+  PresidentialPardonForm        form6("LILIAN FORM");
   ShrubberyCreationForm        form4;
   ShrubberyCreationForm        form5(form4);
 
-  formr = form;
-  formr.execute(test);
+  //std::cout << form3;
+  //std::cout << form6;
+  //form3 = form6;
+  //std::cout << form3;
+  //std::cout << form3;
+  std::cout << form3;
   form3.execute(test);
-  form4.execute(test2);
-  std::cout << formr;
-  std::cout << form;
+  form3.set_target_name("New Name");
+  form3.execute(test);
+  std::cout << form3;
+  form3 = form6;
+  std::cout << form3;
+  //formr.execute(test);
+  //form3.execute(test);
+  //form4.execute(test2);
   //std::cout << form3;
   //std::cout << form4;
   //std::cout << form;

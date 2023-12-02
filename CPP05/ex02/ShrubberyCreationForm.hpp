@@ -12,10 +12,9 @@ class ShrubberyCreationForm: public Aform
 		virtual void execute(Bureaucrat const & executor) const;
 		ShrubberyCreationForm();
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
+		ShrubberyCreationForm(std::string name);
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
-
-	private:
 
 };
 

@@ -19,6 +19,8 @@ class Aform
 		bool		get_is_signed() const;
 		int			get_exec_grade() const;
 		int			get_sign_grade() const;
+		std::string	get_target_name() const;
+		void		set_target_name(std::string target);
 		bool		check_rights(Bureaucrat &b);
 		void		be_signed(Bureaucrat &bc);
 		virtual void execute(Bureaucrat const & executor) const = 0;
@@ -35,6 +37,7 @@ class Aform
 		};
 
 	private:
+		std::string			target;
 		const std::string	name;
 		bool				is_signed;
 		const int			sign_grade;

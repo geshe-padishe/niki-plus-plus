@@ -4,13 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Aform::Aform(): name("Default Aform"), is_signed(0), sign_grade(150), exec_grade(150) {}
+Aform::Aform():  target("Default Target"), name("Default Aform"), is_signed(0), sign_grade(150), exec_grade(150) {}
 
-Aform::Aform( const Aform & src ): name(src.name), is_signed(src.is_signed)
+Aform::Aform( const Aform & src ): target(src.target), name(src.name), is_signed(src.is_signed)
 , sign_grade(src.sign_grade), exec_grade(src.exec_grade) {}
 
 Aform::Aform( std::string name, int	sign_grade, int	exec_grade )
-: name(name), is_signed(0), sign_grade(sign_grade), exec_grade(exec_grade)
+: target("Default Target"), name(name), is_signed(0), sign_grade(sign_grade), exec_grade(exec_grade)
 {
 	if (sign_grade < 1 || exec_grade < 1)
 		throw GradeTooHighException();
@@ -27,12 +27,12 @@ Aform::~Aform() {}
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-//Aform & Aform::operator=(Aform const & rhs)
-//{
-//    // Provide a default implementation or make it pure virtual
-//    // if you want derived classes to always provide their own implementation
-//    return *this;
-//}
+Aform & Aform::operator=(Aform const & rhs)
+{
+	if (this != &rhs)
+		this->is_signed = rhs.is_signed;
+    return *this;
+}
 
 std::ostream &			operator<<( std::ostream & o, Aform const & i )
 {
@@ -98,6 +98,16 @@ void	Aform::be_signed(Bureaucrat &b)
 		throw GradeTooLowException();
 	else
 		this->is_signed	= 1;
+}
+
+std::string Aform::get_target_name() const
+{
+	return (target);
+}
+
+void Aform::set_target_name(std::string target)
+{
+	this->target = target;
 }
 
 /*
