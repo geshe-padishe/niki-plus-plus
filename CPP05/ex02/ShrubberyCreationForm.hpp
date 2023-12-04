@@ -5,11 +5,11 @@
 # include <string>
 # include "Bureaucrat.hpp"
 
-class ShrubberyCreationForm: public Aform
+class ShrubberyCreationForm: public AForm
 {
 
 	public:
-		virtual void execute(Bureaucrat const & executor) const;
+		virtual int execute(Bureaucrat const & executor) const;
 		ShrubberyCreationForm();
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
 		ShrubberyCreationForm(std::string name);

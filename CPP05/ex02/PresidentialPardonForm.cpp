@@ -4,9 +4,9 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PresidentialPardonForm::PresidentialPardonForm() : Aform ("PresidentialPardon form", 25, 5) {}
-PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : Aform(src) {}
-PresidentialPardonForm::PresidentialPardonForm( std::string name ) : Aform(name, 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm() : AForm ("Default Target", "PresidentialPardon form", 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : AForm(src) {}
+PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm(target, "PresidentialPardon form", 25, 5) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
@@ -28,7 +28,7 @@ PresidentialPardonForm &				PresidentialPardonForm::operator=( PresidentialPardo
 }
 std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i )
 {
-	o << static_cast<const Aform &>(i);
+	o << static_cast<const AForm &>(i);
 	return o;
 }
 
@@ -37,10 +37,16 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+int PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	std::cout << "Presidential exec to " << this->get_target_name() << std::endl;
-	std::cout << executor;
+	if (this->get_is_signed() && this->check_rights(executor))
+	{
+		std::cout << this->get_target() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+		return (1);
+	}
+	else
+		std::cout << "Failed to execute " << this->get_name() << std::endl;
+	return (0);
 }
 
 /*

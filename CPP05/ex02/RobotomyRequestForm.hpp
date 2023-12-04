@@ -5,11 +5,11 @@
 # include <string>
 # include "Bureaucrat.hpp"
 
-class RobotomyRequestForm: public Aform
+class RobotomyRequestForm: public AForm
 {
 
 	public:
-		virtual void execute(Bureaucrat const & executor) const;
+		virtual int execute(Bureaucrat const & executor) const;
 		RobotomyRequestForm();
 		RobotomyRequestForm( RobotomyRequestForm const & src );
 		RobotomyRequestForm( std::string name );

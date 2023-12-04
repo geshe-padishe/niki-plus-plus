@@ -72,7 +72,7 @@ int Bureaucrat::getGrade() const
 	return (this->grade);
 }
 
-bool Bureaucrat::signform( Aform &f )
+bool Bureaucrat::signForm( AForm &f )
 {
 	try
 	{
@@ -85,6 +85,11 @@ bool Bureaucrat::signform( Aform &f )
 		return (0);
 	}
 	return (1);
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+
 }
 
 void Bureaucrat::increaseGrade()

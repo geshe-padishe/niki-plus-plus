@@ -1,9 +1,9 @@
 CC = c++
-NAME = Aform
+NAME = AForm
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
-SRC = Bureaucrat.cpp Aform.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
-INC = Bureaucrat.hpp Aform.hpp
+SRC = Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+INC = Bureaucrat.hpp AForm.hpp
 
 OBJS = ${SRC:.cpp=.o}
 
@@ -12,11 +12,11 @@ OBJS = ${SRC:.cpp=.o}
 
 all: $(NAME)
 
-$(NAME): ${OBJS} ${INC}
+$(NAME): ${OBJS} ${INC} main.cpp 
 	${CC} main.cpp ${CFLAGS} ${OBJS} -o ${NAME}
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) main.o
 
 fclean: clean
 	rm -f $(NAME)

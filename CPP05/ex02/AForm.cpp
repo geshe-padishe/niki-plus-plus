@@ -4,13 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Aform::Aform():  target("Default Target"), name("Default Aform"), is_signed(0), sign_grade(150), exec_grade(150) {}
+AForm::AForm():  target("Default Target"), name("Default AForm"), is_signed(0), sign_grade(150), exec_grade(150) {}
 
-Aform::Aform( const Aform & src ): target(src.target), name(src.name), is_signed(src.is_signed)
+AForm::AForm( const AForm & src ): target(src.target), name(src.name), is_signed(src.is_signed)
 , sign_grade(src.sign_grade), exec_grade(src.exec_grade) {}
 
-Aform::Aform( std::string name, int	sign_grade, int	exec_grade )
-: target("Default Target"), name(name), is_signed(0), sign_grade(sign_grade), exec_grade(exec_grade)
+AForm::AForm( std::string target, std::string name, int	sign_grade, int	exec_grade )
+: target(target), name(name), is_signed(0), sign_grade(sign_grade), exec_grade(exec_grade)
 {
 	if (sign_grade < 1 || exec_grade < 1)
 		throw GradeTooHighException();
@@ -21,42 +21,44 @@ Aform::Aform( std::string name, int	sign_grade, int	exec_grade )
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Aform::~Aform() {}
+AForm::~AForm() {}
 
 /*
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Aform & Aform::operator=(Aform const & rhs)
+AForm & AForm::operator=(AForm const & rhs)
 {
 	if (this != &rhs)
 		this->is_signed = rhs.is_signed;
     return *this;
 }
 
-std::ostream &			operator<<( std::ostream & o, Aform const & i )
+std::ostream &			operator<<( std::ostream & o, AForm const & i )
 {
 	if (i.get_is_signed())
 	{
-		o << "Aform " << i.get_name() << " is signed,"
+		o << "Form " << i.get_name() << " is signed,"
 		<< " requires " << i.get_sign_grade() << " to be signed and "
-		<< i.get_exec_grade() << " to be executed" << std::endl;
+		<< i.get_exec_grade() << " to be executed" << " on target "
+		<< i.get_target() << std::endl;
 	}
 	else
 	{
-		o << "Aform " << i.get_name() << " is not signed,"
+		o << "Form " << i.get_name() << " is not signed,"
 		<< " requires " << i.get_sign_grade() << " to be signed and "
-		<< i.get_exec_grade() << " to be executed" << std::endl;
+		<< i.get_exec_grade() << " to be executed" << " on target "
+		<< i.get_target() << std::endl;
 	}
 	return o;
 }
 
-const char* Aform::GradeTooHighException::what() const throw()
+const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
 }
 
-const char* Aform::GradeTooLowException::what() const throw()
+const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
 }
@@ -64,35 +66,37 @@ const char* Aform::GradeTooLowException::what() const throw()
 ** --------------------------------- METHODS ----------------------------------
 */
 
-bool	Aform::check_rights(Bureaucrat &b)
+bool	AForm::check_rights(const Bureaucrat &b) const
 {
-	if (this->exec_grade <= b.getGrade())
+	if (this->exec_grade >= b.getGrade())
 		return (1);
+	else
+		throw GradeTooHighException();
 	return (0);
 }
 
-void Aform::set_signed(bool sign)
+void AForm::set_signed(bool sign)
 {
 	is_signed = sign;
 }
 
-std::string Aform::get_name() const
+std::string AForm::get_name() const
 {
 	return (name);
 }
-bool Aform::get_is_signed() const
+bool AForm::get_is_signed() const
 {
 	return (is_signed);
 }
-int Aform::get_sign_grade() const
+int AForm::get_sign_grade() const
 {
 	return (sign_grade);
 }
-int Aform::get_exec_grade() const
+int AForm::get_exec_grade() const
 {
 	return (exec_grade);
 }
-void	Aform::be_signed(Bureaucrat &b)
+void	AForm::be_signed(Bureaucrat &b)
 {
 	if (b.getGrade() > sign_grade)
 		throw GradeTooLowException();
@@ -100,12 +104,12 @@ void	Aform::be_signed(Bureaucrat &b)
 		this->is_signed	= 1;
 }
 
-std::string Aform::get_target_name() const
+std::string AForm::get_target() const
 {
 	return (target);
 }
 
-void Aform::set_target_name(std::string target)
+void AForm::set_target(std::string target)
 {
 	this->target = target;
 }
@@ -113,6 +117,5 @@ void Aform::set_target_name(std::string target)
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-
 
 /* ************************************************************************** */
