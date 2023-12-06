@@ -29,8 +29,7 @@ AForm::~AForm() {}
 
 AForm & AForm::operator=(AForm const & rhs)
 {
-	(void)rhs;		//this->_value = rhs.getValue();
-
+	(void)rhs;
     return *this;
 }
 

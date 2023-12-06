@@ -29,10 +29,11 @@ Form::~Form() {}
 
 Form &				Form::operator=( Form const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->~Form();
+		new (this) Form(rhs);
+	}
 	return *this;
 }
 

@@ -30,10 +30,11 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->~Bureaucrat();
+		new (this) Bureaucrat(rhs);
+	}
 	return *this;
 }
 

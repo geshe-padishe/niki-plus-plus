@@ -21,12 +21,12 @@ class Bureaucrat
 		Bureaucrat( Bureaucrat const & src );
 		Bureaucrat( std::string, unsigned int );
 		~Bureaucrat();
-		std::string getName() const;
-		int getGrade() const;
-		void increaseGrade();
-		void decreaseGrade();
-		bool signForm( AForm &f );
-		void executeForm(AForm const & form);
+		std::string	getName() const;
+		int			getGrade() const;
+		void		increaseGrade();
+		void		decreaseGrade();
+		void		signForm( AForm &f );
+		void		executeForm(AForm const & form);
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 		class GradeTooHighException: public std::exception
 		{
@@ -40,7 +40,7 @@ class Bureaucrat
 		};
 
 	private:
-		std::string name;
+		const std::string name;
 		int grade;
 
 };

@@ -6,7 +6,8 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm ("Default target", "ShrubberyCreation form", 145, 137) {}
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) : AForm(src) {}
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm(target, "ShrubberyCreation form", 25, 5) {}
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm(target, "ShrubberyCreation form", 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target, std::string name ) : AForm(target, name, 145, 137) {}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -44,7 +45,9 @@ int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	std::string file_name = this->get_target();
 	file_name += "_shrubbery";
  	std::ifstream inputFile(file_name.c_str());
-	if (!inputFile.good() && this->get_is_signed() && this->check_rights(executor))
+	if (!this->get_is_signed())
+		throw FormNotSignedException();
+	if (this->check_rights(executor) && !inputFile.good())
 	{
 		std::ofstream outputFile(file_name.c_str());
 		if (outputFile.is_open())
@@ -60,8 +63,6 @@ int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 			outputFile << "      // \\\\" << std::endl;
 			outputFile.close();	
 		}
-		else
-			std::cout << "Failed to create and write in file" << std::endl;
 		return (1);
 	}
 	return (0);
