@@ -1,24 +1,33 @@
-CC = c++
-NAME = Intern
-CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
+NAME    = Intern
 
-SRC = Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
-INC = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
+CC      = c++ -MMD
 
-OBJS = ${SRC:.cpp=.o}
+RM      = rm -rf
 
-%.o: %.cpp
-	${CC} ${CFLAGS} -c $< -o $@
+CFLAGS  =  -Wall -Wextra -Werror -g3 -std=c++98 # -g3  -fsanitize=address
+
+SRCS =  Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp main.cpp
+
+OBJS = $(SRCS:.cpp=.o)
+
+DPD     = $(SRCS:.cpp=.d)
 
 all: $(NAME)
 
-$(NAME): ${OBJS} ${INC} main.cpp 
-	${CC} main.cpp ${CFLAGS} ${OBJS} -o ${NAME}
+-include $(DPD)
+
+$(NAME): $(OBJS)
+		$(CC) $(CFLAGS) -I. $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+		$(CC) $(CFLAGS) -MMD -o $@ -c $<
 
 clean:
-	rm -f $(OBJS) main.o
+		${RM} $(OBJS) $(DPD)
 
 fclean: clean
-	rm -f $(NAME)
+		${RM} $(NAME)
 
 re: fclean all
+
+.PHONY : all clean fclean re

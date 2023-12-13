@@ -1,10 +1,16 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#include <fstream>
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 #include "Form.hpp"
+
+
+class Form;
 
 class Bureaucrat
 {
@@ -13,11 +19,11 @@ class Bureaucrat
 		Bureaucrat( Bureaucrat const & src );
 		Bureaucrat( std::string, unsigned int );
 		~Bureaucrat();
-		std::string getName() const;
-		unsigned int getGrade() const;
-		void increaseGrade();
-		void decreaseGrade();
-		bool signForm( Form &f );
+		std::string	getName() const;
+		unsigned int			getGrade() const;
+		void					increaseGrade();
+		void					decreaseGrade();
+		void		signForm( Form &f );
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 		class GradeTooHighException: public std::exception
 		{

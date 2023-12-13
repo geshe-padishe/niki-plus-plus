@@ -12,8 +12,7 @@ class ShrubberyCreationForm: public AForm
 		virtual int execute(Bureaucrat const & executor) const;
 		ShrubberyCreationForm();
 		ShrubberyCreationForm( ShrubberyCreationForm const & src );
-		ShrubberyCreationForm(std::string name);
-		ShrubberyCreationForm( std::string name, std::string target );
+		ShrubberyCreationForm(std::string target);
 		~ShrubberyCreationForm();
 		ShrubberyCreationForm &		operator=( ShrubberyCreationForm const & rhs );
 

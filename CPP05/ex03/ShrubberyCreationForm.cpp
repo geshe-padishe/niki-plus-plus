@@ -7,7 +7,6 @@
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm ("Default target", "ShrubberyCreation form", 145, 137) {}
 ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm & src ) : AForm(src) {}
 ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm(target, "ShrubberyCreation form", 145, 137) {}
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target, std::string name ) : AForm(target, name, 145, 137) {}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------

@@ -9,7 +9,6 @@
 RobotomyRequestForm::RobotomyRequestForm() : AForm ("Default Target", "RobotomyRequest form", 72, 45) {}
 RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm & src ) : AForm(src) {}
 RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm(target, "RobotomyRequest form", 72, 45) {}
-RobotomyRequestForm::RobotomyRequestForm( std::string target, std::string name ) : AForm(target, name, 72, 45) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */

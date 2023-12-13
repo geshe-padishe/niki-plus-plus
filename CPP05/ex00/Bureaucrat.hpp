@@ -31,8 +31,8 @@ class Bureaucrat
 		};
 
 	private:
-		const std::string name;
-		unsigned int grade;
+		const std::string	name;
+		unsigned int		grade;
 
 };
 

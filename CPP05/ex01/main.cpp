@@ -2,32 +2,50 @@
 
 int main()
 {
-  Bureaucrat  test("TEST", 1);
-  Bureaucrat  test2("TEST2", 150);
-  Form        form;
-  Form        form3("Form3", 10, 20);
-  Form        form4("Form4", 10, 20);
   try
   {
-  Form        form5("Form5", 1000, 20);
-    /* code */
-  }
-  catch(const std::exception& e)
-  {
-    std::cerr << e.what() << '\n';
-  }
-  try
-  {
-    Form      form2("Form2", 0, 20);
+    Form        form("Bad Form", 160, 35);
+    Form        form2("Bad Form", 0, 35);
+    Form        form3("Bad Form", 3210321, 10);
   }
   catch(const std::exception& e)
   {
     std::cerr << e.what() << '\n';
   }
   
-  std::cout << form3;
-  std::cout << form4;
-  std::cout << form;
+  try
+  {
+    Bureaucrat  test("TEST", 1);
+    Bureaucrat  test2("TEST2", 150);
+    Form        form;
+    Form        form3("Form3", 10, 20);
+    Form        form4("Form4", 10, 20);
+
+    std::cout << form3;
+    std::cout << form4;
+    std::cout << form;
+    test2.signForm(form);
+    test2.signForm(form3);
+    test2.signForm(form4);
+    std::cout << form3;
+    std::cout << form4;
+    std::cout << form;
+    test.signForm(form);
+    test.signForm(form3);
+    test.signForm(form4);
+    std::cout << form3;
+    std::cout << form4;
+    std::cout << form;   
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
+  
+
+
+  
+
   //<< std::endl;
   //std::cout << test << std::endl;
   //test2.signForm(form3);

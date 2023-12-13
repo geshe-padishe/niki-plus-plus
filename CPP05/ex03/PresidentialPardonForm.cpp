@@ -7,7 +7,6 @@
 PresidentialPardonForm::PresidentialPardonForm() : AForm ("Default Target", "PresidentialPardon form", 25, 5) {}
 PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm & src ) : AForm(src) {}
 PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm(target, "PresidentialPardon form", 25, 5) {}
-PresidentialPardonForm::PresidentialPardonForm( std::string target, std::string name ) : AForm(target, name, 25, 5) {}
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
 */

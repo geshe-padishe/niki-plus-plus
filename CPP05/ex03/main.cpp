@@ -3,6 +3,9 @@
 
 int main()
 {
+  try
+  {
+  
   Intern                  intern;
   Bureaucrat              bur("TEST", 1);
   Bureaucrat              bur2("TEST2", 150);
@@ -34,4 +37,10 @@ int main()
   bur.executeForm(*shrubform);
   bur.executeForm(*roboform);
   bur.executeForm(*presform);
+    /* code */
+  }
+  catch(const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+  }
 }

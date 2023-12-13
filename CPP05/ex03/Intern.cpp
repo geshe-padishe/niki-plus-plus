@@ -49,19 +49,19 @@ AForm* Intern::makeForm(std::string name, std::string target)
 	{
 		case 0:
 		{
-			ShrubberyCreationForm *form = new ShrubberyCreationForm(target, name);
+			ShrubberyCreationForm *form = new ShrubberyCreationForm(target);
 			std::cout << "Intern creates " << name << std::endl;
 			return form;
 		}
 		case 1:
 		{
-			PresidentialPardonForm *form = new PresidentialPardonForm(target, name);
+			PresidentialPardonForm *form = new PresidentialPardonForm(target);
 			std::cout << "Intern creates " << name << std::endl;
 			return form;
 		}
 		case 2:
 		{
-			RobotomyRequestForm *form = new RobotomyRequestForm(target, name);
+			RobotomyRequestForm *form = new RobotomyRequestForm(target);
 			std::cout << "Intern creates " << name << std::endl;
 			return form;
 		}

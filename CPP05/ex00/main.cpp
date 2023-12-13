@@ -24,23 +24,12 @@ int main()
     std::cout << test;
     std::cout << test2;
 
-    try
+    try 
     {
       for(unsigned int i = 0; i < 200; i++)
-      {
         test.decreaseGrade();
-      }
-    }
-    catch(const std::exception& e)
-    {
-      std::cerr << e.what() << '\n';
-    }
-    try
-    {
       for(unsigned int i = 0; i < 200; i++)
-      {
         test2.increaseGrade();
-      }
     }
     catch(const std::exception& e)
     {

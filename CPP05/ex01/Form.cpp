@@ -63,6 +63,12 @@ const char* Form::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
 }
+
+const char* Form::FormAlreadySignedException::what() const throw()
+{
+	return ("Form is already signed");
+}
+
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
@@ -75,16 +81,18 @@ bool Form::get_is_signed() const
 {
 	return (is_signed);
 }
-const int Form::get_sign_grade() const
+int Form::get_sign_grade() const
 {
 	return (sign_grade);
 }
-const int Form::get_exec_grade() const
+int Form::get_exec_grade() const
 {
 	return (exec_grade);
 }
 void	Form::be_signed(Bureaucrat &b)
 {
+	if (this->is_signed == 1)
+		throw FormAlreadySignedException();
 	if (b.getGrade() > sign_grade)
 		throw GradeTooLowException();
 	else

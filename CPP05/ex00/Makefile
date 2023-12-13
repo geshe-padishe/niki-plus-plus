@@ -1,27 +1,33 @@
-CC		= c++
+NAME    = Bureaucrat
 
-NAME	= Bureaucrat
+CC      = c++ -MMD
 
-CFLAGS	= -Wall -Wextra -Werror -std=c++98 # -g3  -fsanitize=address
+RM      = rm -rf
 
-SRC		= Bureaucrat.cpp main.cpp
+CFLAGS  =  -Wall -Wextra -Werror -g3 -std=c++98 # -g3  -fsanitize=address
 
-INC		= Bureaucrat.hpp
+SRCS =  Bureaucrat.cpp main.cpp 
 
-OBJS	= ${SRC:.cpp=.o}
+OBJS = $(SRCS:.cpp=.o)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+DPD     = $(SRCS:.cpp=.d)
 
 all: $(NAME)
 
-$(NAME): ${OBJS} ${INC}
-	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
+-include $(DPD)
+
+$(NAME): $(OBJS)
+		$(CC) $(CFLAGS) -I. $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+		$(CC) $(CFLAGS) -MMD -o $@ -c $<
 
 clean:
-	rm -f $(OBJS)
+		${RM} $(OBJS) $(DPD)
 
 fclean: clean
-	rm -f $(NAME)
+		${RM} $(NAME)
 
 re: fclean all
+
+.PHONY : all clean fclean re
