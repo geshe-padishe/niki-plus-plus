@@ -50,27 +50,50 @@ std::ostream &			operator<<( std::ostream & o, ScalarConverter const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+double	ScalarConverter::isInteger(double nb)
+{
+	return (std::fabs(nb - round(nb)) < std::numeric_limits<double>::epsilon());
+}
+
+double	ScalarConverter::doublefloat(char *number)
+{
+	std::string s = number;
+	std::string tail = "";
+	float		fmin = -std::numeric_limits<float>::max();
+	float		fmax = std::numeric_limits<float>::max();
+	double		nb;
+
+	nb = atof(number);
+	if (ScalarConverter::isInteger(nb))
+		tail = ".0";
+	std::cout << "double: " << nb << tail << std::endl;
+	if (std::isinf(nb))
+	{
+		std::cout << "float: " << nb << "f" << std::endl;
+	}
+	else if (nb < fmin || nb > fmax)
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: " << static_cast<float>(nb) << tail << "f" << std::endl;
+	return (nb);
+}
+
 void	ScalarConverter::convert(char *number)
 {
 	std::string	s = number;
-	float		fmin = std::numeric_limits<float>::min();
-	float		fmax = std::numeric_limits<float>::max();
 	int			imin = std::numeric_limits<int>::min();
 	int			imax = std::numeric_limits<int>::max();
 	double		nb;
 	
-	nb = atof(number);
-	std::cout << "double: " << nb << std::endl;
-	if (nb < fmin || nb > fmax)
-		std::cout << "float: impossible" << std::endl;
-	else
-		std::cout << "float: " << static_cast<float>(nb) << std::endl;
-	if (nb < imin || nb > imax)
+	nb = doublefloat(number);
+	if (nb < imin || nb > imax || std::isnan(nb) || std::isinf(nb))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(nb) << std::endl;
-	if (nb < -128 || nb > 127)
-		std::cout << "char: impossible" << std::endl;
+	if (std::isnan(nb) || std::isinf(nb) || nb < -127 || nb > 126)
+		std::cout << "char: Impossible"	<< std::endl;
+	else if (nb < 32 || nb > 126)
+		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: " << static_cast<char>(nb) << std::endl;
 }

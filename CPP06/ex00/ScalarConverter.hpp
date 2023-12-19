@@ -5,6 +5,7 @@
 # include <string>
 # include <cstdlib>
 # include <limits>
+# include <cmath>
 class ScalarConverter
 {
 
@@ -13,7 +14,9 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter( ScalarConverter const & src );
 		~ScalarConverter();
-		void	convert(char *number);
+		static double isInteger(double nb);
+		static void	convert(char *number);
+		static double doublefloat(char *number);
 		ScalarConverter &		operator=( ScalarConverter const & rhs );
 
 	private:
