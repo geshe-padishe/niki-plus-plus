@@ -2,9 +2,10 @@
 
 Base * generate(void)
 {
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    std::srand(static_cast<unsigned int>(std::time(NULL)));
     int randomValue = std::rand() % 3;
 
+    std::cout << "random Value = " << randomValue << std::endl;
     switch (randomValue)
     {
         case 0:
@@ -14,45 +15,58 @@ Base * generate(void)
         case 2:
             return new C();
         default:
-            return nullptr;
+            return NULL;
     }
 }
 
-void identify(Base* p);
+void identify(Base* p)
 {
-    switch(dynamic_cast<Base*>(p)) {
-        case dynamic_cast<A*>(p):
-            std::cout << "A instance" << std::endl;
-        case dynamic_cast<B*>(p):
-            std::cout << "B instance" << std::endl;
-        case dynamic_cast<C*>(p):
-            std::cout << "C instance" << std::endl;
-        default: 
-            std::cerr << "Unknown type" << std::endl;
-    }
+    if (A* a = dynamic_cast<A*>(p))
+        std::cout << "A type" << std::endl;
+    else if (B* b = dynamic_cast<B*>(p))
+        std::cout << "B type" << std::endl;
+    else if (C* c = dynamic_cast<C*>(p))
+        std::cout << "C type" << std::endl;
+    else
+        std::cerr << "Unknown type" << std::endl;
 }
 
-void identify(Base& p);
+void identify(Base& p)
 {
     try {
-        switch(dynamic_cast<Base&>(p)) {
-            case dynamic_cast<A&>(p):
-                std::cout << "A instance" << std::endl;
-            case dynamic_cast<B&>(p):
-                std::cout << "B instance" << std::endl;
-            case dynamic_cast<C&>(p):
-                std::cout << "C instance" << std::endl;
-            default: 
+        A& a = dynamic_cast<A&>(p);
+        (void)a;
+        std::cout << "A type" << std::endl;
+    } catch (const std::exception&) {
+        try {
+            B& b = dynamic_cast<B&>(p);
+            (void)b;
+            std::cout << "B type" << std::endl;
+        } catch (const std::exception&) {
+            try {
+                C& c = dynamic_cast<C&>(p);
+                (void)c;
+                std::cout << "C type" << std::endl;
+            } catch (const std::exception&) {
                 std::cerr << "Unknown type" << std::endl;
+            }
         }
     }
-    catch (const std::bad_cast&) {
-        std::cerr << "Unknown type" << std::endl;
-    }
-
 }
 
 int main()
 {
-    
+    Base *base = generate();
+    Base *base1 = generate();
+    Base *base2 = generate();
+    Base *base3 = generate();
+
+    identify(base);
+    identify(base1);
+    identify(base2);
+    identify(base3);
+    identify(*base);
+    identify(*base1);
+    identify(*base2);
+    identify(*base3);
 }

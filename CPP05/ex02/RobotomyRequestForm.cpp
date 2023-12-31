@@ -45,9 +45,11 @@ int RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	std::srand(time(0));
 	int randomNumber = rand();
 
-	std::cout << "DDDDDDDDDDDRRRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;
-	if (this->get_is_signed() && this->check_rights(executor))
+	if (!this->get_is_signed())
+		throw FormNotSignedException();
+	if (this->check_rights(executor))
 	{
+		std::cout << "DDDDDDDDDDDRRRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;
 		if (randomNumber % 2)
 			std::cout << this->get_target() << " has been succesfully robotomized" << std::endl;
 		else
@@ -56,8 +58,6 @@ int RobotomyRequestForm::execute(Bureaucrat const & executor) const
 			return (1);
 		}
 	}
-	else
-		std::cout << "Failed to execute " << this->get_name() << std::endl;
 	return (1);
 }
 

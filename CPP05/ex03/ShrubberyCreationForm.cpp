@@ -41,16 +41,24 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 
 int ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	std::string file_name = this->get_target();
-	file_name += "_shrubbery";
- 	std::ifstream inputFile(file_name.c_str());
 	if (!this->get_is_signed())
 		throw FormNotSignedException();
-	if (this->check_rights(executor) && !inputFile.good())
+	if (this->check_rights(executor))
 	{
+		std::string file_name = this->get_target();
+		file_name += "_shrubbery";
 		std::ofstream outputFile(file_name.c_str());
 		if (outputFile.is_open())
 		{
+			outputFile << "       _-_" << std::endl;
+			outputFile << "    /~~   ~~\\" << std::endl;
+			outputFile << " /~~         ~~\\" << std::endl;
+			outputFile << "{               }" << std::endl;
+			outputFile << " \\  _-     -_  /" << std::endl;
+			outputFile << "   ~  \\\\ //  ~" << std::endl;
+			outputFile << "_- -   | | _- _" << std::endl;
+			outputFile << "  _ -  | |   -_" << std::endl;
+			outputFile << "      // \\\\" << std::endl;
 			outputFile << "       _-_" << std::endl;
 			outputFile << "    /~~   ~~\\" << std::endl;
 			outputFile << " /~~         ~~\\" << std::endl;

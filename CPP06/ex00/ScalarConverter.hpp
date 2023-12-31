@@ -13,7 +13,7 @@ class ScalarConverter
 
 		ScalarConverter();
 		ScalarConverter( ScalarConverter const & src );
-		~ScalarConverter();
+		virtual ~ScalarConverter() = 0;
 		static double isInteger(double nb);
 		static void	convert(char *number);
 		static double doublefloat(char *number);

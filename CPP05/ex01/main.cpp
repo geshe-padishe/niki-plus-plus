@@ -3,16 +3,14 @@
 int main()
 {
   try
-  {
-    Form        form("Bad Form", 160, 35);
-    Form        form2("Bad Form", 0, 35);
-    Form        form3("Bad Form", 3210321, 10);
-  }
+  { Form        form("Bad Form", 160, 35); }
   catch(const std::exception& e)
-  {
-    std::cerr << e.what() << '\n';
-  }
-  
+  { std::cerr << e.what() << '\n'; }
+  try
+  { Form        form2("Bad Form", 0, 35); }
+  catch(const std::exception& e)
+  { std::cerr << e.what() << '\n'; }
+
   try
   {
     Bureaucrat  test("TEST", 1);
@@ -41,12 +39,4 @@ int main()
   {
     std::cerr << e.what() << '\n';
   }
-  
-
-
-  
-
-  //<< std::endl;
-  //std::cout << test << std::endl;
-  //test2.signForm(form3);
 }

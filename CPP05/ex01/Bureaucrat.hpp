@@ -19,11 +19,11 @@ class Bureaucrat
 		Bureaucrat( Bureaucrat const & src );
 		Bureaucrat( std::string, unsigned int );
 		~Bureaucrat();
-		std::string	getName() const;
+		std::string				getName() const;
 		unsigned int			getGrade() const;
 		void					increaseGrade();
 		void					decreaseGrade();
-		void		signForm( Form &f );
+		void					signForm( Form &f );
 		Bureaucrat &		operator=( Bureaucrat const & rhs );
 		class GradeTooHighException: public std::exception
 		{

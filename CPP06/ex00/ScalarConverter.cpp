@@ -50,6 +50,14 @@ std::ostream &			operator<<( std::ostream & o, ScalarConverter const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+bool contOnlyPrint(const std::string& s)
+{
+    for (std::string::const_iterator it = s.begin(); it != s.end(); ++it)
+        if (!isprint(*it))
+            return false;
+    return true;
+}
+
 double	ScalarConverter::isInteger(double nb)
 {
 	return (std::fabs(nb - round(nb)) < std::numeric_limits<double>::epsilon());
@@ -68,9 +76,7 @@ double	ScalarConverter::doublefloat(char *number)
 		tail = ".0";
 	std::cout << "double: " << nb << tail << std::endl;
 	if (std::isinf(nb))
-	{
 		std::cout << "float: " << nb << "f" << std::endl;
-	}
 	else if (nb < fmin || nb > fmax)
 		std::cout << "float: impossible" << std::endl;
 	else
@@ -85,6 +91,11 @@ void	ScalarConverter::convert(char *number)
 	int			imax = std::numeric_limits<int>::max();
 	double		nb;
 	
+	if (!contOnlyPrint(s))
+	{
+		std::cout << "Error: string contains non printable characters" << std::endl;
+		return ;
+	}
 	nb = doublefloat(number);
 	if (nb < imin || nb > imax || std::isnan(nb) || std::isinf(nb))
 		std::cout << "int: impossible" << std::endl;

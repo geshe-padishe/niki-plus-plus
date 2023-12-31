@@ -88,9 +88,9 @@ void Bureaucrat::signForm( Form &f )
 
 void Bureaucrat::increaseGrade()
 {
-	std::cout << "Bureaucrat " << name << " grade " << grade  << " increasing" << std::endl;
 	if (grade > 1)
 	{
+		std::cout << "Bureaucrat " << name << " grade " << grade  << " increasing" << std::endl;
 		grade--;
 		std::cout << "Bureaucrat " << name << " grade is now " << grade << std::endl;
 	}
@@ -100,9 +100,9 @@ void Bureaucrat::increaseGrade()
 
 void Bureaucrat::decreaseGrade()
 {
-	std::cout << "Bureaucrat " << name << " grade " << grade  << " decreasing" << std::endl;
 	if (grade < 150)
 	{
+		std::cout << "Bureaucrat " << name << " grade " << grade  << " decreasing" << std::endl;
 		grade++;
 		std::cout << "Bureaucrat " << name << " grade is now " << grade << std::endl;
 	}
