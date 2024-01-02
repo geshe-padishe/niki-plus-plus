@@ -11,5 +11,6 @@ int main(int ac, char **av)
     if (ac == 2)
         ScalarConverter::convert(av[1]);
     else
-        std::cout << "Invalid arguments" << std::endl;
+        std::cout << "Invalid number of arguments" << std::endl;
+    
 }
