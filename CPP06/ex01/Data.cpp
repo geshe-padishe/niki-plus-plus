@@ -4,13 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Data::Data()
+Data::Data(): nb(0)
 {
 }
 
 Data::Data( const Data & src )
 {
-	(void)src;
+	*this = src;
 }
 
 
@@ -29,10 +29,10 @@ Data::~Data()
 
 Data &				Data::operator=( Data const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &rhs )
+	{
+		this->nb = rhs.getNumber();
+	}
 	(void)rhs;
 	return *this;
 }
@@ -49,6 +49,10 @@ std::ostream &			operator<<( std::ostream & o, Data const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
+int	Data::getNumber() const
+{
+	return this->nb;
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

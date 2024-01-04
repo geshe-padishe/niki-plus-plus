@@ -12,10 +12,13 @@ class Data
 		Data();
 		Data( Data const & src );
 		~Data();
+		int	getNumber() const;
+
 
 		Data &		operator=( Data const & rhs );
 
 	private:
+		int	nb;
 
 };
 

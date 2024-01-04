@@ -29,17 +29,12 @@ ScalarConverter::~ScalarConverter()
 
 ScalarConverter &				ScalarConverter::operator=( ScalarConverter const & rhs )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
 	(void)rhs;
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, ScalarConverter const & i )
 {
-	//o << "Value = " << i.getValue();
 	(void)i;
 	(void)o;
 	return o;
@@ -50,31 +45,19 @@ std::ostream &			operator<<( std::ostream & o, ScalarConverter const & i )
 ** --------------------------------- METHODS ----------------------------------
 */
 
-//int ScalarConverter::countFractionDigits(double value)
-//{
-//    double integralPart;
-//    double fractionalPart = std::modf(value, &integralPart);
-//
-//    int count = 0;
-//    while (fractionalPart != 0.0) {
-//        fractionalPart *= 10.0;
-//        fractionalPart = std::modf(fractionalPart, &integralPart);
-//        count++;
-//    }
-//    return count;
-//}
-
 int	ScalarConverter::countDigitsF(const std::string& str, double nb)
 {
-	if (countIntegerDigits(nb) >= 7 || std::isinf(nb) || std::isnan(nb))
+	if (countIntegerDigits(nb) >= 7 || std::isinf(nb) || std::isnan(nb) || nb == 0)
 		return (1);
+	//std::cout << "precision = " << std::min(7 - countIntegerDigits(nb), countDigitsAfterPoint(str)) << std::endl;
 	return (std::min(7 - countIntegerDigits(nb), countDigitsAfterPoint(str)));
 }
 
 int	ScalarConverter::countDigitsD(const std::string& str, double nb)
 {
-	if (countIntegerDigits(nb) >= 15 || std::isinf(nb) || std::isnan(nb))
+	if (countIntegerDigits(nb) >= 15 || std::isinf(nb) || std::isnan(nb) || nb == 0)
 		return (1);
+	//std::cout << "precision = " << std::min(15 - countIntegerDigits(nb), countDigitsAfterPoint(str)) << std::endl;
 	return (std::min(15 - countIntegerDigits(nb), countDigitsAfterPoint(str)));
 }
 
@@ -107,7 +90,12 @@ int	ScalarConverter::countDigitsAfterPoint(const std::string& str)
     for (size_t i = 0; i < str.length(); ++i)
 	{
         if (str[i] == '.')
-            return (str.length() - i - 1);
+		{
+			if (str.length() - i - 1 == 0)
+				return (1);
+			else
+            	return (str.length() - i - 1);
+		}
     }
 	return 1;
 }
@@ -124,9 +112,9 @@ bool	ScalarConverter::hasPoint(const std::string& str)
 
 bool	ScalarConverter::isSpecial(const std::string& str)
 {
-	const char	*specials[] = {"+inf", "-inf", "inf", "nan"};
+	const char	*specials[] = {"+inf", "-inf", "inf", "nan", "+inff", "-inff", "nanf", "inff"};
 
-    for (size_t i = 0; i < 4; ++i)
+    for (size_t i = 0; i < 8; ++i)
 	{
         if (std::strcmp(str.c_str(), specials[i]) == 0)
 			return (true);
@@ -146,7 +134,7 @@ bool	ScalarConverter::isNumeric(std::string& str, double &nb)
 	    nb = strtod(str.c_str(), &endptr);
 		return true;
 	}
-	else if (str[str.length() - 1] == 'f')
+	else if (str[str.length() - 1] == 'f' && str.length() != 1)
 		str.erase(str.length() - 1);
     for (size_t i = 0; i < str.length(); ++i)
 	{
@@ -192,10 +180,6 @@ void	ScalarConverter::convert(char *number)
 	else
 		std::cout << "float:  " << std::setprecision(countDigitsF(s, nb)) << static_cast<float>(nb) << "f" << std::endl;
 	std::cout << "double: " << std::setprecision(countDigitsD(s, nb)) << nb << std::endl;
-	//std::cout << "int digits = " << countIntegerDigits(nb) << std::endl;
-	//std::cout << "flo digits = " << countDigitsAfterPoint(s) << std::endl;
-	//std::cout << "count digitsf = " << countDigitsF(s, nb) << std::endl;
-	//std::cout << "count digitsd = " << countDigitsD(s, nb) << std::endl;
 }
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
