@@ -40,12 +40,12 @@ class Array
 			return data[index];
 		}
 		unsigned int	size() const { return _size; }
-		void printArray()
-		{
-		    for (unsigned int i = 0; i < this->size(); i++)
-		        std::cout << data[i] << " ";
-		    std::cout << std::endl;
-		}
+		//void printArray()
+		//{
+		//    for (unsigned int i = 0; i < this->size(); i++)
+		//        std::cout << data[i] << " ";
+		//    std::cout << std::endl;
+		//}
 
 	private:
         long			_size;

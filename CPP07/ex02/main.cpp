@@ -43,10 +43,10 @@ int main(int, char**)
 	{
 		Array<int> tmp = numbers;
 		Array<int> test(tmp);
-        tmp.printArray();
-        test.printArray();
-        tmp.~Array();
-        test.printArray();
+        //printArray(tmp);
+        //printArray(test);
+        //tmp.~Array();
+        //printArray(test);
 	}
 
 	std::cout << "\t\tCHECK COPIE PROFONDE\n";
