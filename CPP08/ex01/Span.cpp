@@ -14,11 +14,6 @@ Span::Span(const Span& other) : size(other.size)
         numbers.push_back(*it);
     }
 }
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 Span::~Span() {}
 
 /*
@@ -29,26 +24,23 @@ Span &				Span::operator=( Span const & rhs )
 {
 	if ( this != &rhs )
 	{   
-        
-	}
+        this->numbers.clear();
+        this->size = rhs.size;
+        this->addNumbers(rhs.numbers.begin(), rhs.numbers.end());
+    }
 	return *this;
 }
-
-//std::ostream &			operator<<( std::ostream & o, Span const & i )
-//{
-//	//o << "Value = " << i.getValue();
-//	return o;
-//}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void    Span::addNumbers(std::vector<int>::iterator start, std::vector<int>::iterator end)
+void    Span::addNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end)
 {
     if (end < start)
         return;
-    for (std::vector<int>::iterator it = start; it != end; ++it)
+    for (std::vector<int>::const_iterator it = start; it != end; ++it)
         this->addNumber(*it);
+    //numbers.insert(numbers.begin(), start, end);
 }
 
 void    Span::addNumber(int number)
@@ -94,6 +86,7 @@ void    Span::printSpan()
     }
     std::cout << std::endl;
 }
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

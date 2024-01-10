@@ -1,6 +1,13 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <list>
+#include <deque>
+#include <map>
+
 class ValueNotFound : public std::exception {
 public:
    const char* what() const throw() {

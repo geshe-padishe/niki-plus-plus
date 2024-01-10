@@ -31,12 +31,4 @@ class MutantStack : public std::stack<T>
 		iterator end() { return this->c.end(); }
 };
 
-template <typename T>
-std::ostream &			operator<<( std::ostream & o, MutantStack<T> const & i )
-{
-	(void)i;
-	//o << "Value = " << i.getValue();
-	return o;
-}
-
 #endif /* ***************************************************** MUTANTSTACK_H */

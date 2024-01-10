@@ -18,10 +18,10 @@ class Span
         Span();
         ~Span();
         Span(const Span& other);
-        void addNumbers(std::vector<int>::iterator start, std::vector<int>::iterator end);
-        void addNumber(int number);
-        int shortestSpan();
-        int longestSpan();
+        void    addNumbers(std::vector<int>::const_iterator start, std::vector<int>::const_iterator end);
+        void    addNumber(int number);
+        int     shortestSpan();
+        int     longestSpan();
         void    printSpan();
         
         unsigned int                getSize();
