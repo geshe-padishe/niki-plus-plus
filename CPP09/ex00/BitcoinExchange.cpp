@@ -25,7 +25,9 @@ bool validateDate(const std::string& dateString)
     int y, m, d;
 
     if (sscanf(dateString.c_str(), "%4d-%2d-%2d", &y, &m, &d) != 3)
-        return false;
+    { return false; }
+	if ((y < 2009) || (y == 2009 && m == 1 && d < 2))
+		return false;
     if (m < 1 || m > 12)
         return false;
     if (d < 1 || d > 31)
@@ -42,15 +44,16 @@ bool validateDate(const std::string& dateString)
     return (true);
 }
 
-std::multimap<std::string, double> parseInputFile(const std::string& filename, std::multimap<std::string, double> &m)
+std::multimap<std::string, double> parseInputFile(std::ifstream &file, std::multimap<std::string, double> &m)
 {
-    std::ifstream file(filename.c_str());
     std::multimap<std::string, double> dvList;
     std::string line;
     std::string date;
 	std::string sep;
     double value;
 
+	if (!file.is_open())
+		return (std::cout << "Error: could not open file." << std::endl, std::multimap<std::string, double>());
     std::getline(file, line);
     while (std::getline(file, line))
     {

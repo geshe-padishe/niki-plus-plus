@@ -10,22 +10,22 @@ bool isOperator(char c)
 int main(int argc, char **argv)
 {
     std::stack<double> s;
+    if (argc != 2)
+        return (std::cout << "Error" << std::endl, 1);
     std::string expr = argv[1];
 
-    if (argc != 2)
-        return (std::cout << "Error arg" << std::endl, 1);
     for (size_t i = 0; i < expr.length(); ++i)
     {
         if (expr[i] == ' ' && expr[i + 1] == ' ')
-            return (std::cout << "Error space" << std::endl, 1);
+            return (std::cout << "Error" << std::endl, 1);
         if (expr[i] == ' ')
             continue;
         if (!isOperator(expr[i]) && !isdigit(expr[i]))
-            return (std::cout << "Error unknown" << std::endl, 1);
+            return (std::cout << "Error" << std::endl, 1);
         if (isdigit(expr[i]))
         {
             if (expr[i + 1] != ' ')
-                return (std::cout << "Error sardines" << std::endl, 1);
+                return (std::cout << "Error" << std::endl, 1);
             s.push(expr[i] - '0');
         }
         else
@@ -48,10 +48,13 @@ int main(int argc, char **argv)
                     s.push(op1 * op2);
                     break;
                 case '/':
+                {
                     s.push(op1 / op2);
                     break;
+                    
+                }
                 default:
-                    std::cout << "Error switch" << std::endl;
+                    std::cout << "Error" << std::endl;
                 return 1;
             }
         }
